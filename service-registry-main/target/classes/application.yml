@@ -1,0 +1,22 @@
+server:
+  port: 8761
+  servlet:
+    context-path: /service
+
+spring:
+  application:
+    name: service
+
+swagger:
+  url:
+    https://service.cmd.skillassure.com/service
+
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: https://service.cmd.skillassure.com/service/service
+  instance:
+    hostname: localhost
