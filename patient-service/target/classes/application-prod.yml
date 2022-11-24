@@ -1,0 +1,27 @@
+server:
+  port: 8092
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: https://service.cmd.skillassure.com/eureka
+
+  instance:
+    hostname: service.cmd.skillassure.com
+
+spring:
+  application:
+    name: PET-SERVICE
+
+
+swagger:
+  productionURL: https://patient.cmd.skillassure.com/patient
+
+rest:
+  appointmentService: http://APPOINTMENT-SERVICE/
+  settingService: http://SETTING-SERVICE
+
+
+
