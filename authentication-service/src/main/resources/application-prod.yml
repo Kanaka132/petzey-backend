@@ -1,0 +1,34 @@
+server:
+  port: 8094
+spring:
+  application:
+    name: AUTH-SERVICE
+
+  datasource:
+    url: jdbc:mysql://petzey-opteamix.mysql.database.azure.com:3306/AuthService?createDatabaseIfNotExist=true
+    username: petzey
+    password: Login@123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: https://service.cmd.skillassure.com/eureka
+  instance:
+    hostname: service.cmd.skillassure.com
+
+#MicroService url
+rest:
+  settingServiceUrl: http://SETTING-SERVICE/
+
+swagger:
+  productionURL: https://authentication.cmd.skillassure.com/authentication

@@ -1,0 +1,39 @@
+server:
+  port: 8094
+spring:
+  application:
+    name: AUTH-SERVICE
+
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/AuthService?createDatabaseIfNotExist=true
+#    username: root
+#    password: root@123
+
+  datasource:
+    url: jdbc:mysql://petzey-opteamix.mysql.database.azure.com:3306/AuthService?createDatabaseIfNotExist=true
+    username: petzey
+    password: Login@123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+#MicroService url
+rest:
+  settingServiceUrl: http://SETTING-SERVICE/
+
+swagger:
+  productionURL: https://patientauth.cmd.skillassure.com/patientauth
