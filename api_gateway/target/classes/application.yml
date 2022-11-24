@@ -1,0 +1,67 @@
+server:
+  port: 8095
+
+spring:
+  application:
+    name: API-GATEWAY
+  main:
+    web-application-type: reactive
+
+  cloud:
+    discovery:
+      enabled: true
+
+
+
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders:
+              - content-type
+            allowedMethods:
+              - GET
+              - POST
+
+
+      routes:
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/api/auth-service/**
+          filters:
+            - RewritePath=/api/auth-service/(?<segment>.*), /$\{segment}
+
+        - id: SETTING-SERVICE
+          uri: lb://SETTING-SERVICE
+          predicates:
+            - Path=/api/setting-service/**
+          filters:
+            - RewritePath=/api/setting-service/(?<segment>.*), /$\{segment}
+
+        - id: APPOINTMENT-SERVICE
+          uri: lb://APPOINTMENT-SERVICE
+          predicates:
+            - Path=/api/appointment-service/**
+          filters:
+            - RewritePath=/api/appointment-service/(?<segment>.*), /$\{segment}
+
+        - id: PET-SERVICE
+          uri: lb://PET-SERVICE
+          predicates:
+            - Path=/api/pet-service/**
+          filters:
+            - RewritePath=/api/pet-service/(?<segment>.*), /$\{segment}
+
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+
